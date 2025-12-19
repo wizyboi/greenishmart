@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GreenishMart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            /* Updated Color Palette */
+            --primary: #39B54A;
+            /* Main Color - Green */
+            --primary-dark: #2da03d;
+            /* Darker shade */
+            --primary-light: #5cd06c;
+            /* Lighter shade */
+            --secondary: #FF921C;
+            /* Secondary - Orange */
+            --accent: #FF921C;
+            /* Accent - Orange */
+            --accent-dark: #e07b0b;
+            /* Dark Accent */
+
+            /* Neutral Colors */
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --gray: #6C757D;
+            --dark-gray: #343A40;
+            --black: #212529;
+
+            /* Functional Colors */
+            --success: #39B54A;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --info: #17A2B8;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ===== HEADER ===== */
+        .about-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 30px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-text .tagline {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 60px auto 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        /* Decorative elements */
+        .about-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Z" /></svg>');
+            background-size: cover;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            position: relative;
+            top: -60px;
+            padding-bottom: 80px;
+        }
+
+        /* Story Section */
+        .story-section {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 36px;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-light);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .story-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .story-text p {
+            margin-bottom: 20px;
+        }
+
+        .story-highlights {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%);
+            border-radius: 15px;
+        }
+
+        .story-highlights h3 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .story-highlights ul {
+            list-style: none;
+        }
+
+        .story-highlights li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 16px;
+            color: var(--dark-gray);
+        }
+
+        .story-highlights li i {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .story-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            margin-bottom: 60px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-dark);
+            font-size: 32px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: var(--gray);
+        }
+
+        /* Mission & Vision */
+        .mission-vision {
+            margin-bottom: 60px;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .mv-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+        }
+
+        .mv-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary-dark);
+            font-size: 32px;
+        }
+
+        .mv-card h3 {
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+
+        .mv-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Values Section */
+        .values-section {
+            margin-bottom: 60px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            gap: 20px;
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .value-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-size: 24px;
+        }
+
+        .value-content h3 {
+            font-size: 20px;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .value-content p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Team Section */
+        .team-section {
+            margin-bottom: 60px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            font-size: 20px;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .team-info .position {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .team-info p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .team-social a {
+            width: 36px;
+            height: 36px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .team-social a:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            color: var(--white);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            background: var(--white);
+            color: var(--primary-dark);
+            border: none;
+            padding: 18px 35px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            background-color: var(--secondary);
+        }
+
+        /* ===== FOOTER ===== */
+        .about-footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-section p {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .newsletter {
+            margin-top: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .story-section {
+                padding: 40px;
+            }
+
+            .cta-section {
+                padding: 40px;
+            }
+
+            .cta-section h2 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .hero-content {
+                margin-top: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .main-content {
+                top: -40px;
+            }
+
+            .stats-grid,
+            .mv-grid,
+            .values-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 30px 20px;
+            }
+
+            .stat-number {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-header {
+                padding: 20px 0 80px;
+            }
+
+            .main-content {
+                padding-bottom: 40px;
+            }
+
+            .story-section,
+            .mv-card,
+            .value-card {
+                padding: 25px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .stat-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            .cta-section {
+                padding: 30px;
+            }
+
+            .cta-section h2 {
+                font-size: 24px;
+            }
+
+            .btn {
+                padding: 15px 25px;
+                font-size: 16px;
+            }
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .hidden {
+            display: none;
+        }
+
+        /* Timeline for milestones */
+        .timeline {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: var(--primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .timeline-content {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        /* Animation for stats */
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-card {
+            animation: countUp 0.6s ease forwards;
+        }
+
+        /* Hover effects for images */
+        .hover-zoom {
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .hover-zoom img {
+            transition: transform 0.5s ease;
+        }
+
+        .hover-zoom:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="about-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>GreenishMart</h1>
+                        <p class="tagline">Shop Smarter, Live Greener</p>
+                    </div>
+                </a>
+
+                <nav class="nav-links">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="help-center.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help</span>
+                    </a>
+                    <a href="contact-developer.html">
+                        <i class="fas fa-code"></i>
+                        <span>Developer</span>
+                    </a>
+                    <a href="login.html">
+                        <i class="fas fa-user"></i>
+                        <span>Account</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="hero-content">
+                <h1>Our Story: Redefining Online Shopping</h1>
+                <p>Discover how GreenishMart grew from a small startup to your favorite online shopping destination,
+                    committed to sustainability and customer satisfaction.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Our Story Section -->
+            <section class="story-section">
+                <h2 class="section-title">Our Journey</h2>
+
+                <div class="story-content">
+                    <div class="story-text">
+                        <p>Founded in 2018 by three college friends who shared a passion for sustainable living and
+                            technology, GreenishMart began as a small online marketplace for eco-friendly products. What
+                            started as a weekend project in a garage quickly grew into something much bigger.</p>
+
+                        <p>We noticed that while e-commerce was booming, very few platforms focused on sustainability
+                            and ethical sourcing. Our mission was clear: create an online shopping experience that not
+                            only offered great products but also made a positive impact on the planet.</p>
+
+                        <p>Today, GreenishMart serves millions of customers across the globe, offering everything from
+                            everyday essentials to specialty eco-products. But our core values remain the same:
+                            sustainability, transparency, and exceptional customer experience.</p>
+
+                        <div class="story-highlights">
+                            <h3>Key Milestones</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> <strong>2018:</strong> Launched with just 50
+                                    eco-friendly products</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>2019:</strong> Reached 100,000 customers
+                                    and expanded to 500+ products</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>2020:</strong> Introduced carbon-neutral
+                                    shipping nationwide</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>2021:</strong> Expanded internationally
+                                    to 20+ countries</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>2022:</strong> Launched GreenishMart
+                                    Foundation for environmental initiatives</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>2023:</strong> Awarded "Most Sustainable
+                                    E-commerce Platform"</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="story-image hover-zoom">
+                        <!-- You can replace this with your actual image -->
+                        <div
+                            style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary-light), var(--accent)); display: flex; align-items: center; justify-content: center; color: var(--primary-dark); font-size: 18px; text-align: center; padding: 20px;">
+                            <div>
+                                <i class="fas fa-leaf" style="font-size: 48px; margin-bottom: 15px;"></i>
+                                <p>GreenishMart: From garage startup to global sustainable marketplace</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <h2 class="section-title" style="text-align: center;">By The Numbers</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" data-count="2500000">2.5M+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-number" data-count="50000">50K+</div>
+                        <div class="stat-label">Products Available</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-number" data-count="50">50+</div>
+                        <div class="stat-label">Countries Served</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <div class="stat-number" data-count="1500">1,500+</div>
+                        <div class="stat-label">Eco-friendly Brands</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission & Vision Section -->
+            <section class="mission-vision">
+                <h2 class="section-title" style="text-align: center;">Our Mission & Vision</h2>
+
+                <div class="mv-grid">
+                    <div class="mv-card">
+                        <div class="mv-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>To make sustainable shopping accessible, affordable, and enjoyable for everyone. We're
+                            committed to providing high-quality eco-friendly products while maintaining transparent
+                            business practices and minimizing our environmental footprint.</p>
+                    </div>
+
+                    <div class="mv-card">
+                        <div class="mv-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>To become the world's leading sustainable e-commerce platform, inspiring positive change in
+                            consumer behavior and setting new standards for environmental responsibility in online
+                            retail.</p>
+                    </div>
+
+                    <div class="mv-card">
+                        <div class="mv-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Our Promise</h3>
+                        <p>Every purchase you make contributes to environmental initiatives. We donate 1% of all profits
+                            to reforestation projects and partner with organizations working to combat climate change.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Values Section -->
+            <section class="values-section">
+                <h2 class="section-title" style="text-align: center;">Our Core Values</h2>
+
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="value-content">
+                            <h3>Sustainability First</h3>
+                            <p>Every decision we make is evaluated through an environmental lens. From packaging to
+                                shipping, we prioritize eco-friendly solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="value-content">
+                            <h3>Transparency</h3>
+                            <p>We believe in honest business practices. You can trace the origin of products and see
+                                exactly how your purchase makes a difference.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="value-content">
+                            <h3>Community Focus</h3>
+                            <p>We're building more than a marketplace - we're creating a community of conscious
+                                consumers who share our values.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="value-content">
+                            <h3>Innovation</h3>
+                            <p>We constantly explore new technologies and methods to reduce our environmental impact and
+                                improve your shopping experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="value-content">
+                            <h3>Ethical Partnerships</h3>
+                            <p>We carefully vet all our suppliers and brands to ensure they meet our strict ethical and
+                                environmental standards.</p>
+                        </div>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <div class="value-content">
+                            <h3>Customer Delight</h3>
+                            <p>Your satisfaction is our priority. We go above and beyond to ensure every shopping
+                                experience is exceptional.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section class="team-section">
+                <h2 class="section-title" style="text-align: center;">Meet Our Leadership Team</h2>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-image">
+                            <!-- Replace with actual image -->
+                            <div
+                                style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary-light), var(--accent)); display: flex; align-items: center; justify-content: center; color: var(--primary-dark);">
+                                <i class="fas fa-user" style="font-size: 80px;"></i>
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h3>wisdom omeka</h3>
+                            <span class="position">CEO & Co-Founder</span>
+                            <p>Former environmental scientist with 10+ years in sustainable business development.
+                                Passionate about creating positive change through commerce.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <!-- Replace with actual image -->
+                            <div
+                                style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary-light), var(--accent)); display: flex; align-items: center; justify-content: center; color: var(--primary-dark);">
+                                <i class="fas fa-user" style="font-size: 80px;"></i>
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h3>gerald madueke</h3>
+                            <span class="position">CTO & Co-Founder</span>
+                            <p>Tech innovator specializing in e-commerce platforms. Leads our technology team in
+                                creating seamless, sustainable shopping experiences.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <!-- Replace with actual image -->
+                            <div
+                                style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary-light), var(--accent)); display: flex; align-items: center; justify-content: center; color: var(--primary-dark);">
+                                <i class="fas fa-user" style="font-size: 80px;"></i>
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h3>kcey</h3>
+                            <span class="position">Head of Sustainability</span>
+                            <p>Environmental policy expert who ensures all our operations meet the highest
+                                sustainability standards and certifications.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-image">
+                            <!-- Replace with actual image -->
+                            <div
+                                style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--primary-light), var(--accent)); display: flex; align-items: center; justify-content: center; color: var(--primary-dark);">
+                                <i class="fas fa-user" style="font-size: 80px;"></i>
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h3>amaka</h3>
+                            <span class="position">Head of Operations</span>
+                            <p>Supply chain expert who optimizes our logistics for minimal environmental impact while
+                                maintaining efficiency.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta-section">
+                <h2>Join Our Green Revolution</h2>
+                <p>Every purchase you make at GreenishMart supports sustainable practices and helps fund environmental
+                    initiatives. Together, we can make online shopping a force for positive change.</p>
+                <a href="index.html" class="btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    Start Shopping Sustainably
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="about-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GreenishMart</h3>
+                    <p>Your trusted online destination for sustainable shopping. We're committed to making eco-friendly
+                        products accessible to everyone while minimizing our environmental impact.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="help-center.html">Help Center</a></li>
+                        <li><a href="contact-developer.html">Contact Developer</a></li>
+                        <li><a href="login.html">My Account</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Our Policies</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Sustainability Report</a></li>
+                        <li><a href="#">Carbon Neutral Commitment</a></li>
+                        <li><a href="#">Supplier Code of Conduct</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for updates on new eco-friendly products, sustainability tips, and
+                        exclusive offers.</p>
+                    <div class="newsletter">
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Your email address">
+                            <button type="button">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 GreenishMart. All rights reserved. | Committed to sustainable e-commerce since 2018</p>
+                <p>This website is designed with ♥ for the planet. Every visit supports our mission to make online
+                    shopping greener.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ===== ANIMATED STATS COUNTER =====
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const suffix = stat.textContent.includes('+') ? '+' : '';
+                let current = 0;
+                const increment = target / 100;
+                const duration = 1500; // 1.5 seconds
+                const stepTime = duration / 100;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current) + suffix;
+                }, stepTime);
+            });
+        }
+
+        // Animate stats when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // ===== NEWSLETTER SUBSCRIPTION =====
+        document.querySelector('.newsletter-form button').addEventListener('click', function () {
+            const emailInput = this.parentElement.querySelector('input');
+            const email = emailInput.value.trim();
+
+            if (!email) {
+                showAlert('Please enter your email address', 'error');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showAlert('Please enter a valid email address', 'error');
+                return;
+            }
+
+            // Show loading state
+            const originalText = this.textContent;
+            this.textContent = 'Subscribing...';
+            this.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                showAlert('Thank you for subscribing to our newsletter!', 'success');
+                emailInput.value = '';
+                this.textContent = originalText;
+                this.disabled = false;
+            }, 1500);
+        });
+
+        // ===== TEAM CARD HOVER EFFECTS =====
+        const teamCards = document.querySelectorAll('.team-card');
+        teamCards.forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = 'var(--shadow-lg)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'var(--shadow-md)';
+            });
+        });
+
+        // ===== ALERT FUNCTION =====
+        function showAlert(message, type = 'info') {
+            // Create alert element
+            const alertEl = document.createElement('div');
+            alertEl.className = `alert ${type}`;
+            alertEl.innerHTML = `
+                <div class="alert-icon">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                </div>
+                <div class="alert-content">
+                    <h4>${type.charAt(0).toUpperCase() + type.slice(1)}</h4>
+                    <p>${message}</p>
+                </div>
+                <button class="alert-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            // Add styles if not already present
+            if (!document.querySelector('#alert-styles')) {
+                const alertStyles = document.createElement('style');
+                alertStyles.id = 'alert-styles';
+                alertStyles.textContent = `
+                    .alert {
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: var(--white);
+                        border-radius: 10px;
+                        box-shadow: var(--shadow-lg);
+                        padding: 20px 25px;
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+                        min-width: 300px;
+                        max-width: 400px;
+                        z-index: 1000;
+                        transform: translateX(120%);
+                        transition: transform 0.4s ease;
+                        border-left: 5px solid var(--primary);
+                    }
+                    
+                    .alert.show {
+                        transform: translateX(0);
+                    }
+                    
+                    .alert.success {
+                        border-left-color: var(--success);
+                    }
+                    
+                    .alert.error {
+                        border-left-color: var(--danger);
+                    }
+                    
+                    .alert.info {
+                        border-left-color: var(--info);
+                    }
+                    
+                    .alert-icon {
+                        font-size: 24px;
+                        flex-shrink: 0;
+                    }
+                    
+                    .alert.success .alert-icon {
+                        color: var(--success);
+                    }
+                    
+                    .alert.error .alert-icon {
+                        color: var(--danger);
+                    }
+                    
+                    .alert.info .alert-icon {
+                        color: var(--info);
+                    }
+                    
+                    .alert-content {
+                        flex: 1;
+                    }
+                    
+                    .alert-content h4 {
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                        color: var(--dark-gray);
+                    }
+                    
+                    .alert-content p {
+                        font-size: 14px;
+                        color: var(--gray);
+                    }
+                    
+                    .alert-close {
+                        background: none;
+                        border: none;
+                        color: var(--gray);
+                        cursor: pointer;
+                        font-size: 18px;
+                        padding: 0;
+                        margin-left: 10px;
+                    }
+                    
+                    @media (max-width: 576px) {
+                        .alert {
+                            min-width: auto;
+                            width: calc(100% - 40px);
+                            right: 20px;
+                            left: 20px;
+                        }
+                    }
+                `;
+                document.head.appendChild(alertStyles);
+            }
+
+            // Add to body
+            document.body.appendChild(alertEl);
+
+            // Show alert with animation
+            setTimeout(() => {
+                alertEl.classList.add('show');
+            }, 10);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                alertEl.classList.remove('show');
+                setTimeout(() => {
+                    if (alertEl.parentNode) {
+                        alertEl.remove();
+                    }
+                }, 400);
+            }, 5000);
+
+            // Close button functionality
+            const closeBtn = alertEl.querySelector('.alert-close');
+            closeBtn.addEventListener('click', () => {
+                alertEl.classList.remove('show');
+                setTimeout(() => {
+                    if (alertEl.parentNode) {
+                        alertEl.remove();
+                    }
+                }, 400);
+            });
+        }
+
+        // ===== MILESTONE TIMELINE ANIMATION =====
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Add animation classes
+        const style = document.createElement('style');
+        style.textContent = `
+            .timeline-item {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeInUp 0.6s ease forwards;
+            }
+            
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ===== PAGE LOAD ANIMATION =====
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add fade-in animation to main content
+            const mainContent = document.querySelector('.main-content');
+            mainContent.style.opacity = '0';
+            mainContent.style.transform = 'translateY(20px)';
+            mainContent.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            setTimeout(() => {
+                mainContent.style.opacity = '1';
+                mainContent.style.transform = 'translateY(0)';
+            }, 300);
+
+            // Initialize tooltips for team social icons
+            const socialIcons = document.querySelectorAll('.team-social a');
+            socialIcons.forEach(icon => {
+                const platform = icon.querySelector('i').className.split(' ')[1].replace('fa-', '');
+                icon.setAttribute('title', platform.charAt(0).toUpperCase() + platform.slice(1));
+            });
+        });
+
+        // ===== PARALLAX EFFECT FOR HEADER =====
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('.about-header');
+            if (header) {
+                header.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+            }
+        });
+
+        // ===== VALUE CARDS INTERACTIVE EFFECT =====
+        const valueCards = document.querySelectorAll('.value-card');
+        valueCards.forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                const icon = this.querySelector('.value-icon');
+                icon.style.transform = 'scale(1.1) rotate(5deg)';
+                icon.style.transition = 'transform 0.3s ease';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                const icon = this.querySelector('.value-icon');
+                icon.style.transform = 'scale(1) rotate(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>

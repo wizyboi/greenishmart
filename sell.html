@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell on GreenishMart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        /* Reusing main styles from index.html/login.html for consistency */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            /* Updated Color Palette */
+            --primary: #39B54A;
+            /* Main Color - Green */
+            --primary-dark: #2da03d;
+            /* Darker shade */
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --gray: #6C757D;
+            --dark-gray: #343A40;
+            --success: #39B54A;
+            --danger: #DC3545;
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--white);
+            text-decoration: none;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            font-weight: 500;
+        }
+
+        .sell-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+            margin-top: -30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .file-upload {
+            border: 2px dashed #ccc;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            display: none;
+            border-radius: 8px;
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <h1><i class="fas fa-camera"></i> Sell Your Item</h1>
+        <p>Turn your items into cash on GreenishMart</p>
+    </header>
+
+    <div class="container">
+        <div class="sell-card">
+            <div id="alertBox" class="alert"></div>
+
+            <form id="sellForm">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="name" placeholder="e.g. iPhone 13 Pro Max" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" name="price" placeholder="0.00" step="0.01" required style="flex: 2;">
+                        <select name="currency" style="flex: 1;">
+                            <option value="USD">USD ($)</option>
+                            <option value="NGN">NGN (₦)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" name="location" placeholder="e.g. New York, NY" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category">
+                        <option value="Electronics">Electronics</option>
+                        <option value="Fashion">Fashion</option>
+                        <option value="Home">Home & Garden</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Vehicles">Vehicles</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="4" placeholder="Describe your item..."></textarea>
+                </div>
+
+                <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 40px; color: var(--gray);"></i>
+                    <p>Click to upload product image</p>
+                    <input type="file" id="fileInput" name="image" accept="image/*" style="display: none">
+                    <img id="imagePreview" class="preview-image" src="#" alt="Preview">
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">Post Item</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Login check and Token validation
+        const token = localStorage.getItem('greenishmart_token');
+        const isLoggedIn = localStorage.getItem('greenishmart_logged_in') === 'true';
+
+        if (!isLoggedIn || !token) {
+            alert('Your session has expired or you are not logged in. Please log in again to post items.');
+            localStorage.removeItem('greenishmart_logged_in');
+            localStorage.removeItem('greenishmart_token');
+            window.location.href = 'login.html';
+        }
+
+        const API_BASE = window.location.hostname === 'localhost'
+            ? 'http://localhost:8000/api'
+            : 'http://localhost:8000/api';
+
+        // Image Preview
+        document.getElementById('fileInput').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.getElementById('imagePreview');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Form Submission
+        document.getElementById('sellForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            console.log("Form submission started"); // Debug log
+
+            const submitBtn = document.getElementById('submitBtn');
+            const alertBox = document.getElementById('alertBox');
+            const fileInput = document.getElementById('fileInput');
+
+            // Manual validation for hidden file input
+            if (!fileInput.files || !fileInput.files[0]) {
+                alert('Please upload an image of your product.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Uploading...';
+            alertBox.style.display = 'none';
+
+            const formData = new FormData(this);
+
+            const token = localStorage.getItem('greenishmart_token');
+            const headers = {};
+            if (token) {
+                headers['Authorization'] = `Bearer ${token}`;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/products/`, {
+                    method: 'POST',
+                    headers: headers,
+                    body: formData,
+                    credentials: 'include'
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.ok) {
+                    alertBox.textContent = '✅ ' + (data.message || 'Product posted successfully!');
+                    alertBox.className = 'alert success';
+                    alertBox.style.display = 'block';
+                    this.reset();
+                    document.getElementById('imagePreview').style.display = 'none';
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                } else {
+                    // Check specifically for token errors
+                    if (response.status === 401 || (data.code === 'token_not_valid')) {
+                        alert('Your session has expired. Please log in again.');
+                        localStorage.removeItem('greenishmart_logged_in');
+                        localStorage.removeItem('greenishmart_token');
+                        window.location.href = 'login.html';
+                        return;
+                    }
+
+                    // Try to extract detailed error messages
+                    let errorMsg = data.message || 'Upload failed';
+                    if (data.errors) {
+                        const firstError = Object.values(data.errors)[0];
+                        errorMsg += `: ${Array.isArray(firstError) ? firstError[0] : firstError}`;
+                    } else if (data.detail) {
+                        errorMsg = data.detail;
+                    }
+                    throw new Error(errorMsg);
+                }
+            } catch (err) {
+                console.error('Upload error details:', err);
+                alertBox.textContent = '❌ Error: ' + err.message;
+                alertBox.className = 'alert error';
+                alertBox.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Post Item';
+            }
+        });
+    </script>
+</body>
+
+</html>
