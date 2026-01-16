@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenishMart - Online Shopping</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="container">
+            <div class="top-header-content">
+                <p><i class="fas fa-truck"></i> Free delivery on orders over $50 | <i class="fas fa-shield-alt"></i>
+                    100% Secure Shopping</p>
+                <div class="top-header-links">
+                    <a href="./sell.html"><i class="fas fa-camera"></i> Sell on GreenishMart</a>
+                    <a href="./help_center.html"><i class="fas fa-question-circle"></i> Help</a>
+                    <a href="./login.html"><i class="fas fa-user"></i> Account</a>
+                    <a href="./"><i class="fas fa-map-marker-alt"></i> Track Order</a>
+                    <a href="#"><i class="fas fa-globe"></i> English</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+        <div class="main-header">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>Greenish<span>Mart</span></h1>
+                            <p class="tagline">Shop Smarter</p>
+                        </div>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="search-bar">
+                        <div class="search-container">
+                            <input type="text" placeholder="Search products, brands and categories...">
+                            <button class="search-btn">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                        <div class="search-hints">
+                            <span>Trending: </span>
+                            <a href="#">Smartphones</a>
+                            <a href="#">Laptops</a>
+                            <a href="#">Headphones</a>
+                        </div>
+                        <div id="search-feedback" class="search-feedback" style="display: none;"></div>
+                    </div>
+
+                    <!-- User Actions -->
+                    <div class="user-actions">
+                        <a href="./login.html" class="action-item">
+                            <div class="action-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="action-text">
+                                <span>Hello, Sign in</span>
+                                <strong>My Account</strong>
+                            </div>
+                        </a>
+                        <a href="#" class="action-item">
+                            <div class="action-icon">
+                                <i class="fas fa-heart"></i>
+                                <span class="badge">5</span>
+                            </div>
+                            <div class="action-text">
+                                <span>My</span>
+                                <strong>Wishlist</strong>
+                            </div>
+                        </a>
+                        <a href="#" class="action-item cart">
+                            <div class="action-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge">3</span>
+                            </div>
+                            <div class="action-text">
+                                <span>Total</span>
+                                <strong>$245.99</strong>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="nav-categories">
+                        <button class="categories-btn">
+                            <i class="fas fa-bars"></i> All Categories
+                        </button>
+                        <div class="categories-dropdown">
+                            <a href="#"><i class="fas fa-mobile-alt"></i> Phones & Tablets</a>
+                            <a href="#"><i class="fas fa-laptop"></i> Computing</a>
+                            <a href="#"><i class="fas fa-tshirt"></i> Fashion</a>
+                            <a href="#"><i class="fas fa-home"></i> Home & Office</a>
+                            <a href="#"><i class="fas fa-tv"></i> Electronics</a>
+                            <a href="#"><i class="fas fa-heartbeat"></i> Health & Beauty</a>
+                            <a href="#"><i class="fas fa-baby"></i> Baby Products</a>
+                            <a href="#"><i class="fas fa-gamepad"></i> Gaming</a>
+                        </div>
+                    </div>
+                    <ul class="nav-list">
+                        <li><a href="#" class="active">Home</a></li>
+                        <li><a href="#">Today's Deals</a></li>
+                        <li><a href="#">Flash Sales</a></li>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Top Brands</a></li>
+                        <li><a href="#">Sell on GreenishMart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-wrapper">
+                <div class="hero-sidebar">
+                    <h3>Popular Categories</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#"><i class="fas fa-mobile-alt"></i> Smartphones <span>256+</span></a></li>
+                        <li><a href="#"><i class="fas fa-laptop"></i> Laptops <span>189+</span></a></li>
+                        <li><a href="#"><i class="fas fa-headphones"></i> Headphones <span>342+</span></a></li>
+                        <li><a href="#"><i class="fas fa-tshirt"></i> Fashion <span>1024+</span></a></li>
+                        <li><a href="#"><i class="fas fa-home"></i> Home Appliances <span>567+</span></a></li>
+                        <li><a href="#"><i class="fas fa-dumbbell"></i> Sports & Fitness <span>234+</span></a></li>
+                        <li><a href="#"><i class="fas fa-gamepad"></i> Gaming <span>178+</span></a></li>
+                        <li><a href="#"><i class="fas fa-utensils"></i> Supermarket <span>891+</span></a></li>
+                    </ul>
+                </div>
+                <div class="hero-slider">
+                    <div class="slider-container">
+                        <div class="slide active">
+                            <div class="slide-content">
+                                <h2>Summer Sale Up to 70% Off</h2>
+                                <p>On electronics, fashion, home appliances and more. Limited time offer!</p>
+                                <a href="#" class="btn btn-slide">Shop Now <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Summer Sale">
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <h2>New Arrivals - Tech Gadgets</h2>
+                                <p>Latest smartphones, laptops and smartwatches. Free shipping on all orders.</p>
+                                <a href="#" class="btn btn-slide">Explore Tech <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                            <div class="slide-image">
+                                <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                    alt="Tech Gadgets">
+                            </div>
+                        </div>
+                        <div class="slider-controls">
+                            <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                            <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <div class="slider-dots">
+                            <span class="dot active"></span>
+                            <span class="dot"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest User Listings -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header" style="margin-bottom: 20px;">
+                <h2 style="font-size: 24px;">Latest from Sellers</h2>
+                <a href="./sell.html" class="view-all">Sell Your Item <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="products-grid" id="user-products-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; min-height: 200px;">
+                <!-- Products will be loaded here via JS -->
+                <div class="loading-spinner" style="text-align: center; grid-column: 1/-1; padding: 40px;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 30px; color: var(--primary);"></i>
+                    <p>Loading market...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Sales -->
+    <section class="flash-sales">
+        <div class="container">
+            <div class="section-header">
+                <div class="header-left">
+                    <h2 class="section-title"><i class="fas fa-bolt"></i> Flash Sales</h2>
+                    <p class="section-subtitle">Limited time offers. Don't miss out!</p>
+                </div>
+                <div class="header-right">
+                    <div class="timer">
+                        <span class="timer-label">Ends in:</span>
+                        <div class="timer-display">
+                            <span class="time-box hours">24</span>:
+                            <span class="time-box minutes">59</span>:
+                            <span class="time-box seconds">59</span>
+                        </div>
+                    </div>
+                    <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-badge">-25%</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                            alt="Smartphone">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Smartphone X Pro 256GB</h3>
+                        <p class="product-description">6.7" Super AMOLED, 12GB RAM, Triple Camera</p>
+                        <div class="product-price">
+                            <span class="current-price">$699.99</span>
+                            <span class="old-price">$899.99</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">(245)</span>
+                            </div>
+                            <div class="product-sold">
+                                <i class="fas fa-fire"></i> 124 sold
+                            </div>
+                        </div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-badge">-15%</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                            alt="Laptop">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">UltraBook Pro Laptop</h3>
+                        <p class="product-description">15.6" FHD, Intel i7, 16GB RAM, 512GB SSD</p>
+                        <div class="product-price">
+                            <span class="current-price">$1,199.99</span>
+                            <span class="old-price">$1,399.99</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <span class="rating-count">(189)</span>
+                            </div>
+                            <div class="product-sold">
+                                <i class="fas fa-fire"></i> 89 sold
+                            </div>
+                        </div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-badge">-30%</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                            alt="Headphones">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Wireless Headphones Pro</h3>
+                        <p class="product-description">Noise cancelling, 30hr battery life, Bluetooth 5.2</p>
+                        <div class="product-price">
+                            <span class="current-price">$199.99</span>
+                            <span class="old-price">$249.99</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-count">(342)</span>
+                            </div>
+                            <div class="product-sold">
+                                <i class="fas fa-fire"></i> 210 sold
+                            </div>
+                        </div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-badge">-20%</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                            alt="Smart Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Smart Watch Series 5</h3>
+                        <p class="product-description">Health tracking, GPS, Water resistant, 7-day battery</p>
+                        <div class="product-price">
+                            <span class="current-price">$299.99</span>
+                            <span class="old-price">$349.99</span>
+                        </div>
+                        <div class="product-meta">
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">(178)</span>
+                            </div>
+                            <div class="product-sold">
+                                <i class="fas fa-fire"></i> 95 sold
+                            </div>
+                        </div>
+                        <button class="add-to-cart"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-th-large"></i> Shop By Category</h2>
+                <a href="#" class="view-all">All Categories <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #e8f7e8;">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Phones & Tablets</h3>
+                    <p>256+ products</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #f0f8e8;">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Computing</h3>
+                    <p>189+ products</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #f8f8e8;">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Fashion</h3>
+                    <p>1024+ products</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #f0f8e8;">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3>Electronics</h3>
+                    <p>567+ products</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #e8f7e8;">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home & Office</h3>
+                    <p>432+ products</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #f8f8e8;">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Health & Beauty</h3>
+                    <p>321+ products</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #e8f7e8;">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3>Baby Products</h3>
+                    <p>189+ products</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon" style="background-color: #f0f8e8;">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gaming</h3>
+                    <p>178+ products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Deals -->
+    <section class="daily-deals">
+        <div class="container">
+            <div class="deals-wrapper">
+                <div class="deals-content">
+                    <h2>Weekend Special Deals</h2>
+                    <p>Up to 50% off on selected items. Limited time offer. Shop now before it's too late!</p>
+                    <div class="deals-timer">
+                        <div class="deal-timer-box">
+                            <span class="timer-value">12</span>
+                            <span class="timer-label">Hours</span>
+                        </div>
+                        <div class="deal-timer-box">
+                            <span class="timer-value">45</span>
+                            <span class="timer-label">Minutes</span>
+                        </div>
+                        <div class="deal-timer-box">
+                            <span class="timer-value">30</span>
+                            <span class="timer-label">Seconds</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-deal">Shop Now <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="deals-image">
+                    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Deals">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Brands -->
+    <section class="top-brands">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-crown"></i> Top Brands</h2>
+            </div>
+            <div class="brands-grid">
+                <div class="brand-logo">SAMSUNG</div>
+                <div class="brand-logo">APPLE</div>
+                <div class="brand-logo">HP</div>
+                <div class="brand-logo">NIKE</div>
+                <div class="brand-logo">ADIDAS</div>
+                <div class="brand-logo">SONY</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3>GreenishMart</h3>
+                    <p class="footer-description">Your trusted online shopping destination. We offer quality products,
+                        fast delivery, and excellent customer service.</p>
+                    <!-- Your existing HTML content -->
+                    <div class="footer-newsletter">
+                        <h4>Subscribe to Newsletter</h4>
+                        <div class="newsletter-form">
+                            <!-- Change this line - point to newsletter.php -->
+                            <form id="newsletterForm" onsubmit="handleNewsletter(event)">
+                                <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                                <button type="submit" class="subscribe-btn">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Rest of your HTML -->
+
+
+
+
+                </div>
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">Phones & Tablets</a></li>
+                        <li><a href="#">Computing</a></li>
+                        <li><a href="#">Fashion</a></li>
+                        <li><a href="#">Home & Office</a></li>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Health & Beauty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Help & Support</h4>
+                    <ul>
+                        <li><a href="./help_center.html">Help Center</a></li>
+                        <li><a href="./contact_developer.html">Contact Us</a></li>
+                        <li><a href="./order_track.html">Track Your Order</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Delivery Information</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About GreenishMart</h4>
+                    <ul>
+                        <li><a href="./about_us.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Sell on GreenishMart</a></li>
+                        <li><a href="#">Become an Affiliate</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-middle">
+                <div class="payment-methods">
+                    <h4>payment-methods</h4>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-paypal"></i>
+                        <i class="fab fa-cc-apple-pay"></i>
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                </div>
+                <div class="download-app">
+                    <h4>Download Our App:</h4>
+                    <div class="app-buttons">
+                        <a href="#" class="app-btn"><i class="fab fa-google-play"></i> Google Play</a>
+                        <a href="#" class="app-btn"><i class="fab fa-app-store"></i> App Store</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+                <p class="copyright">&copy; 2023 GreenishMart. All rights reserved. | Designed as a Jumia-inspired
+                    e-commerce platform</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

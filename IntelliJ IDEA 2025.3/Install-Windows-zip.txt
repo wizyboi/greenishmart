@@ -1,0 +1,47 @@
+IntelliJ IDEA
+
+INSTALLATION INSTRUCTIONS
+===============================================================================
+
+  Windows Installation Instructions
+  ------------------------------------------------------------------------------
+  1. Unpack the IntelliJ IDEA distribution file that you downloaded to
+     where you wish to install the program. We will refer to this destination
+     location as your {installation home} below.
+
+  2. [OPTIONAL] Add the "{installation home}\bin" to your %Path% environment
+     variable so that you may start IntelliJ IDEA from any directory.
+
+  3. [OPTIONAL] To adjust the value of JVM heap size, create
+      "%APPDATA%\JetBrains\IntelliJIdea2025.3\idea64.exe.vmoptions" file,
+      and set the -Xms and -Xmx parameters. To see how to do this,
+      you can reference the vmoptions file under "{installation home}\bin" as a model.
+
+  4. Open the console, `cd` into "{installation home}\bin", and type:
+
+       idea.bat
+
+     to start the application. As a side effect, this will initialize various
+     configuration files in the "%APPDATA%\JetBrains\IntelliJIdea2025.3" directory.
+
+  [OPTIONAL] Changing location of "config" and "caches" directories
+  ------------------------------------------------------------------------------
+  By default, IntelliJ IDEA stores all your settings under the "%APPDATA%\JetBrains\IntelliJIdea2025.3"
+  directory and uses "%LOCALAPPDATA%\JetBrains\IntelliJIdea2025.3" as a data cache.
+  If you want to change these settings,
+
+  1. Open a console and `cd` into "%APPDATA%\JetBrains\IntelliJIdea2025.3"
+
+  2. Create the file "idea.properties" and open it in a text editor.
+     Set the idea.system.path and/or idea.config.path variables as desired,
+     for example:
+
+     idea.system.path=${user.home}/.IntelliJIdea2025.3/system
+     idea.config.path=${user.home}/.IntelliJIdea2025.3/config
+
+  3. Note that we recommend storing caches on a local disk with at least 1GB of free space.
+
+
+Enjoy!
+
+-IntelliJ IDEA Development Team

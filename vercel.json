@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "buildCommand": "echo 'Static frontend site'",
+  "public": ".",
+  "functions": {
+    "django_backend/**": {
+      "runtime": "python3.9"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "django_backend/backend/wsgi.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
+}

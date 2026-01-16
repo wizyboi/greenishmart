@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - GreenishMart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            /* Greenish Yellow Color Palette */
+            --primary: #ff7a00;
+            /* Main Color - was Greenish Yellow, now Orange */
+            --primary-dark: #e06a00;
+            /* Darker shade */
+            --primary-light: #ffb980;
+            /* Lighter shade */
+            --secondary: #6b7280;
+            /* Secondary - was GreenYellow, now Grey */
+            --accent: #6b7280;
+            /* Accent - now Grey */
+            --accent-dark: #4b5563;
+            /* Dark Accent (grey) */
+
+            /* Neutral Colors */
+            --shouty-white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --gray: #6C757D;
+            --dark-gray: #343A40;
+            --black: #212529;
+
+            /* Functional Colors */
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --info: #17A2B8;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ===== HEADER ===== */
+        .tracking-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--shouty-white);
+            padding: 30px 0 80px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--shouty-white);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo-text .tagline {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .page-title {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-title p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            position: relative;
+            top: -40px;
+            padding-bottom: 80px;
+        }
+
+        /* Tracking Container */
+        .tracking-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Tracking Form */
+        .tracking-form-container {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .tracking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .required {
+            color: var(--danger);
+        }
+
+        .form-group input {
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--dark-gray);
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(154, 205, 50, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-help {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+
+        .form-help h4 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Tracking Results */
+        .tracking-results {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .order-id {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .order-date {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .status-processing {
+            background-color: #FFF3CD;
+            color: #856404;
+        }
+
+        .status-shipped {
+            background-color: #D1ECF1;
+            color: #0C5460;
+        }
+
+        .status-delivered {
+            background-color: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-cancelled {
+            background-color: #F8D7DA;
+            color: #721C24;
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .detail-item {
+            padding: 15px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+        }
+
+        .detail-item .label {
+            font-size: 12px;
+            color: var(--gray);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-item .value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            border: 2px solid var(--light-gray);
+            background-color: var(--white);
+            color: var(--dark-gray);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .action-btn.primary {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .action-btn.secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Tracking Timeline */
+        .tracking-timeline {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: var(--light-gray);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            z-index: 1;
+        }
+
+        .timeline-item.active::before {
+            background-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(154, 205, 50, 0.3);
+        }
+
+        .timeline-item.completed::before {
+            background-color: var(--success);
+        }
+
+        .timeline-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .timeline-info h4 {
+            font-size: 16px;
+            color: var(--dark-gray);
+            margin-bottom: 5px;
+        }
+
+        .timeline-info p {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .timeline-date {
+            font-size: 14px;
+            color: var(--gray);
+            white-space: nowrap;
+        }
+
+        /* Order Items */
+        .order-items {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .items-table th {
+            text-align: left;
+            padding: 15px;
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .items-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .item-details h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+        }
+
+        .item-details p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .order-total {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .total-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-dark);
+        }
+
+        /* Delivery Map */
+        .delivery-map {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg);
+            margin-top: 30px;
+        }
+
+        .map-container {
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            border-radius: 10px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-dark);
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-marker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 5px rgba(154, 205, 50, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(154, 205, 50, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(154, 205, 50, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(154, 205, 50, 0);
+            }
+        }
+
+        .delivery-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            background-color: var(--white);
+            border-radius: 15px;
+            padding: 60px 30px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+
+        .empty-icon {
+            width: 100px;
+            height: 100px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--primary-dark);
+            font-size: 48px;
+        }
+
+        .empty-state h3 {
+            font-size: 24px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .empty-state p {
+            color: var(--gray);
+            max-width: 500px;
+            margin: 0 auto 30px;
+        }
+
+        /* ===== FOOTER ===== */
+        .tracking-footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-section p {
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #444;
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+            .tracking-container {
+                grid-template-columns: 1fr;
+            }
+
+            .tracking-form-container {
+                position: static;
+            }
+
+            .page-title h1 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .page-title {
+                margin-top: 20px;
+            }
+
+            .page-title h1 {
+                font-size: 26px;
+            }
+
+            .page-title p {
+                font-size: 16px;
+            }
+
+            .main-content {
+                top: -30px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .items-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .tracking-header {
+                padding: 20px 0 60px;
+            }
+
+            .tracking-form-container,
+            .order-summary,
+            .tracking-timeline,
+            .order-items,
+            .delivery-map {
+                padding: 20px;
+            }
+
+            .order-details,
+            .delivery-info {
+                grid-template-columns: 1fr;
+            }
+
+            .order-actions {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                justify-content: center;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item::before {
+                left: -26px;
+            }
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        /* Alert Styles */
+        .alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow-lg);
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 300px;
+            max-width: 400px;
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: transform 0.4s ease;
+            border-left: 5px solid var(--primary);
+        }
+
+        .alert.show {
+            transform: translateX(0);
+        }
+
+        .alert.success {
+            border-left-color: var(--success);
+        }
+
+        .alert.error {
+            border-left-color: var(--danger);
+        }
+
+        .alert.info {
+            border-left-color: var(--info);
+        }
+
+        .alert-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .alert.success .alert-icon {
+            color: var(--success);
+        }
+
+        .alert.error .alert-icon {
+            color: var(--danger);
+        }
+
+        .alert.info .alert-icon {
+            color: var(--info);
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-content h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+        }
+
+        .alert-content p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .alert-close {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0;
+            margin-left: 10px;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--white);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Alert Container -->
+    <div id="alertContainer"></div>
+
+    <!-- Header -->
+    <header class="tracking-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>GreenishMart</h1>
+                        <p class="tagline">Track Your Order</p>
+                    </div>
+                </a>
+
+                <nav class="nav-links">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    <a href="login.html">
+                        <i class="fas fa-user"></i>
+                        <span>My Account</span>
+                    </a>
+                    <a href="help-center.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help</span>
+                    </a>
+                    <a href="contact-developer.html">
+                        <i class="fas fa-code"></i>
+                        <span>Developer</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="page-title">
+                <h1>Track Your Order</h1>
+                <p>Enter your order ID and email to check the status of your delivery</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="tracking-container">
+                <!-- Tracking Form -->
+                <div class="tracking-form-container">
+                    <div class="form-header">
+                        <h2>Track Order</h2>
+                        <p>Enter your tracking details below</p>
+                    </div>
+
+                    <form class="tracking-form" id="trackingForm">
+                        <div class="form-group">
+                            <label for="orderId">
+                                <i class="fas fa-receipt"></i>
+                                Order ID
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="orderId" placeholder="GM-2023-123456" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i>
+                                Email Address
+                                <span class="required">*</span>
+                            </label>
+                            <input type="email" id="email" placeholder="you@example.com" required>
+                        </div>
+
+                        <button type="submit" class="btn" id="trackBtn">
+                            <i class="fas fa-search"></i>
+                            Track Order
+                        </button>
+                    </form>
+
+                    <div class="form-help">
+                        <h4><i class="fas fa-info-circle"></i> Where to find your Order ID?</h4>
+                        <p>Your Order ID was included in your confirmation email and can also be found in your account
+                            under "My Orders".</p>
+                    </div>
+                </div>
+
+                <!-- Tracking Results -->
+                <div class="tracking-results" id="trackingResults">
+                    <!-- Empty State (Shown by default) -->
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3>Ready to Track Your Order?</h3>
+                        <p>Enter your Order ID and email address in the form to view real-time tracking information,
+                            delivery status, and estimated arrival time.</p>
+
+                        <div class="demo-orders"
+                            style="margin-top: 30px; padding: 20px; background-color: var(--light-gray); border-radius: 10px;">
+                            <h4 style="color: var(--primary-dark); margin-bottom: 15px;">Demo Order IDs</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div style="padding: 10px; background-color: var(--white); border-radius: 5px;">
+                                    <strong>GM-2023-1001</strong><br>
+                                    <small>Processing</small>
+                                </div>
+                                <div style="padding: 10px; background-color: var(--white); border-radius: 5px;">
+                                    <strong>GM-2023-1002</strong><br>
+                                    <small>Shipped</small>
+                                </div>
+                                <div style="padding: 10px; background-color: var(--white); border-radius: 5px;">
+                                    <strong>GM-2023-1003</strong><br>
+                                    <small>Delivered</small>
+                                </div>
+                                <div style="padding: 10px; background-color: var(--white); border-radius: 5px;">
+                                    <strong>GM-2023-1004</strong><br>
+                                    <small>Cancelled</small>
+                                </div>
+                            </div>
+                            <p style="margin-top: 15px; font-size: 12px; color: var(--gray);">Use any email address for
+                                demo purposes</p>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary (Hidden by default) -->
+                    <div class="order-summary hidden" id="orderSummary">
+                        <h2 class="section-title">
+                            <i class="fas fa-box-open"></i>
+                            Order Summary
+                        </h2>
+
+                        <div class="order-header">
+                            <div>
+                                <div class="order-id" id="displayOrderId">GM-2023-123456</div>
+                                <div class="order-date" id="orderDate">Placed on October 15, 2023</div>
+                            </div>
+                            <div class="order-status status-processing" id="orderStatus">Processing</div>
+                        </div>
+
+                        <div class="order-details">
+                            <div class="detail-item">
+                                <div class="label">Estimated Delivery</div>
+                                <div class="value" id="estimatedDelivery">Oct 20-22, 2023</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Shipping Method</div>
+                                <div class="value" id="shippingMethod">Standard Shipping</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Carrier</div>
+                                <div class="value" id="carrier">GreenishMart Logistics</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Tracking Number</div>
+                                <div class="value" id="trackingNumber">GM987654321</div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar -->
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="deliveryProgress" style="width: 30%;"></div>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 14px; color: var(--gray);">
+                            <span>Order Placed</span>
+                            <span>Processing</span>
+                            <span>Shipped</span>
+                            <span>In Transit</span>
+                            <span>Delivered</span>
+                        </div>
+
+                        <div class="order-actions">
+                            <a href="#" class="action-btn primary" id="viewInvoiceBtn">
+                                <i class="fas fa-file-invoice"></i>
+                                View Invoice
+                            </a>
+                            <a href="#" class="action-btn secondary" id="contactSupportBtn">
+                                <i class="fas fa-headset"></i>
+                                Contact Support
+                            </a>
+                            <a href="#" class="action-btn secondary" id="orderAgainBtn">
+                                <i class="fas fa-redo"></i>
+                                Order Again
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Tracking Timeline (Hidden by default) -->
+                    <div class="tracking-timeline hidden" id="trackingTimeline">
+                        <h2 class="section-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Tracking History
+                        </h2>
+
+                        <div class="timeline" id="timeline">
+                            <!-- Timeline items will be inserted here by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Order Items (Hidden by default) -->
+                    <div class="order-items hidden" id="orderItems">
+                        <h2 class="section-title">
+                            <i class="fas fa-shopping-cart"></i>
+                            Order Items
+                        </h2>
+
+                        <table class="items-table">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orderItemsBody">
+                                <!-- Order items will be inserted here by JavaScript -->
+                            </tbody>
+                        </table>
+
+                        <div class="order-total">
+                            <div class="total-row">
+                                <span>Subtotal</span>
+                                <span id="subtotal">$299.99</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Shipping</span>
+                                <span id="shippingCost">$9.99</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Tax</span>
+                                <span id="taxAmount">$24.00</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Discount</span>
+                                <span id="discount">-$30.00</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Total</span>
+                                <span id="totalAmount">$303.98</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery Map (Hidden by default) -->
+                    <div class="delivery-map hidden" id="deliveryMap">
+                        <h2 class="section-title">
+                            <i class="fas fa-truck"></i>
+                            Live Delivery Tracking
+                        </h2>
+
+                        <div class="map-container">
+                            <div class="map-marker">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <p>Live delivery tracking would appear here</p>
+                        </div>
+
+                        <div class="delivery-info">
+                            <div class="detail-item">
+                                <div class="label">Current Location</div>
+                                <div class="value" id="currentLocation">In transit - 25 miles away</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Driver</div>
+                                <div class="value" id="driverName">John D. (GreenishMart Logistics)</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Estimated Arrival</div>
+                                <div class="value" id="estimatedArrival">Today, 2:00 PM - 4:00 PM</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Contact Driver</div>
+                                <div class="value">
+                                    <a href="tel:+15551234567" style="color: var(--primary); text-decoration: none;">
+                                        <i class="fas fa-phone"></i> (555) 123-4567
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="tracking-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GreenishMart Tracking</h3>
+                    <p>Track your orders in real-time. Get updates on delivery status, estimated arrival times, and live
+                        tracking information.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="login.html">My Account</a></li>
+                        <li><a href="help-center.html">Help Center</a></li>
+                        <li><a href="contact-developer.html">Contact Developer</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Shipping & Delivery</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Shipping Information</a></li>
+                        <li><a href="#">Delivery Options</a></li>
+                        <li><a href="#">International Shipping</a></li>
+                        <li><a href="#">Track Order</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Need Help?</h3>
+                    <p>Our customer support team is available 24/7 to assist you with order tracking and delivery
+                        questions.</p>
+                    <p style="margin-top: 15px;">
+                        <i class="fas fa-phone"></i> 1-800-GREENISH<br>
+                        <i class="fas fa-envelope"></i> support@greenishmart.com
+                    </p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2023 GreenishMart Order Tracking. All rights reserved.</p>
+                <p>Delivery tracking information is updated in real-time. Estimated delivery times are approximate.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ===== DOM ELEMENTS =====
+        const trackingForm = document.getElementById('trackingForm');
+        const trackBtn = document.getElementById('trackBtn');
+        const trackingResults = document.getElementById('trackingResults');
+        const emptyState = document.getElementById('emptyState');
+        const orderSummary = document.getElementById('orderSummary');
+        const trackingTimeline = document.getElementById('trackingTimeline');
+        const orderItems = document.getElementById('orderItems');
+        const deliveryMap = document.getElementById('deliveryMap');
+        const alertContainer = document.getElementById('alertContainer');
+
+        // ===== DEMO ORDER DATA =====
+        const demoOrders = {
+            'GM-2023-1001': {
+                status: 'Processing',
+                statusClass: 'status-processing',
+                progress: 30,
+                date: 'October 15, 2023',
+                estimatedDelivery: 'Oct 20-22, 2023',
+                shippingMethod: 'Standard Shipping',
+                carrier: 'GreenishMart Logistics',
+                trackingNumber: 'GM987654321',
+                subtotal: '$299.99',
+                shippingCost: '$9.99',
+                taxAmount: '$24.00',
+                discount: '-$30.00',
+                totalAmount: '$303.98',
+                currentLocation: 'In transit - 25 miles away',
+                driverName: 'John D. (GreenishMart Logistics)',
+                estimatedArrival: 'Today, 2:00 PM - 4:00 PM',
+                timeline: [
+                    { status: 'Order Placed', description: 'Your order has been confirmed', date: 'Oct 15, 10:30 AM', completed: true },
+                    { status: 'Processing', description: 'Your order is being prepared', date: 'Oct 15, 2:15 PM', completed: true },
+                    { status: 'Ready for Shipping', description: 'Package handed to carrier', date: 'Oct 16, 9:00 AM', completed: false },
+                    { status: 'In Transit', description: 'Package is on the way', date: 'Expected Oct 17', completed: false },
+                    { status: 'Out for Delivery', description: 'Package will be delivered today', date: 'Expected Oct 20', completed: false },
+                    { status: 'Delivered', description: 'Package delivered successfully', date: 'Expected Oct 20', completed: false }
+                ],
+                items: [
+                    { name: 'Wireless Headphones Pro', description: 'Noise cancelling, Bluetooth 5.2', price: '$199.99', quantity: 1, total: '$199.99' },
+                    { name: 'Phone Case', description: 'Eco-friendly silicone case', price: '$24.99', quantity: 2, total: '$49.98' },
+                    { name: 'USB-C Cable', description: 'Fast charging, 6ft length', price: '$19.99', quantity: 1, total: '$19.99' },
+                    { name: 'Screen Protector', description: 'Tempered glass, 3-pack', price: '$29.99', quantity: 1, total: '$29.99' }
+                ]
+            },
+            'GM-2023-1002': {
+                status: 'Shipped',
+                statusClass: 'status-shipped',
+                progress: 60,
+                date: 'October 10, 2023',
+                estimatedDelivery: 'Oct 14-16, 2023',
+                shippingMethod: 'Express Shipping',
+                carrier: 'GreenishMart Logistics',
+                trackingNumber: 'GM123456789',
+                subtotal: '$599.99',
+                shippingCost: '$14.99',
+                taxAmount: '$48.00',
+                discount: '-$50.00',
+                totalAmount: '$612.98',
+                currentLocation: 'In transit - 120 miles away',
+                driverName: 'Maria S. (GreenishMart Logistics)',
+                estimatedArrival: 'Tomorrow, 10:00 AM - 12:00 PM',
+                timeline: [
+                    { status: 'Order Placed', description: 'Your order has been confirmed', date: 'Oct 10, 9:15 AM', completed: true },
+                    { status: 'Processing', description: 'Your order is being prepared', date: 'Oct 10, 11:30 AM', completed: true },
+                    { status: 'Shipped', description: 'Package handed to carrier', date: 'Oct 11, 3:45 PM', completed: true },
+                    { status: 'In Transit', description: 'Package is on the way', date: 'Oct 12, 8:00 AM', completed: true },
+                    { status: 'Out for Delivery', description: 'Package will be delivered today', date: 'Expected Oct 14', completed: false },
+                    { status: 'Delivered', description: 'Package delivered successfully', date: 'Expected Oct 14', completed: false }
+                ],
+                items: [
+                    { name: 'UltraBook Pro Laptop', description: '15.6" FHD, 16GB RAM, 512GB SSD', price: '$1199.99', quantity: 1, total: '$1199.99' },
+                    { name: 'Laptop Sleeve', description: 'Water-resistant, eco-friendly material', price: '$39.99', quantity: 1, total: '$39.99' }
+                ]
+            },
+            'GM-2023-1003': {
+                status: 'Delivered',
+                statusClass: 'status-delivered',
+                progress: 100,
+                date: 'October 5, 2023',
+                estimatedDelivery: 'Oct 9, 2023',
+                shippingMethod: 'Standard Shipping',
+                carrier: 'GreenishMart Logistics',
+                trackingNumber: 'GM555888777',
+                subtotal: '$149.99',
+                shippingCost: '$4.99',
+                taxAmount: '$12.00',
+                discount: '$0.00',
+                totalAmount: '$166.98',
+                currentLocation: 'Delivered to your doorstep',
+                driverName: 'Robert K. (GreenishMart Logistics)',
+                estimatedArrival: 'Delivered on Oct 9, 2023',
+                timeline: [
+                    { status: 'Order Placed', description: 'Your order has been confirmed', date: 'Oct 5, 2:30 PM', completed: true },
+                    { status: 'Processing', description: 'Your order is being prepared', date: 'Oct 6, 10:00 AM', completed: true },
+                    { status: 'Shipped', description: 'Package handed to carrier', date: 'Oct 7, 11:15 AM', completed: true },
+                    { status: 'In Transit', description: 'Package is on the way', date: 'Oct 8, 9:30 AM', completed: true },
+                    { status: 'Out for Delivery', description: 'Package will be delivered today', date: 'Oct 9, 8:45 AM', completed: true },
+                    { status: 'Delivered', description: 'Package delivered successfully', date: 'Oct 9, 3:20 PM', completed: true }
+                ],
+                items: [
+                    { name: 'Smart Watch Series 5', description: 'Health tracking, GPS, 7-day battery', price: '$299.99', quantity: 1, total: '$299.99' },
+                    { name: 'Extra Charging Cable', description: 'Magnetic charging cable', price: '$19.99', quantity: 1, total: '$19.99' }
+                ]
+            },
+            'GM-2023-1004': {
+                status: 'Cancelled',
+                statusClass: 'status-cancelled',
+                progress: 0,
+                date: 'October 12, 2023',
+                estimatedDelivery: 'Cancelled',
+                shippingMethod: 'Standard Shipping',
+                carrier: 'GreenishMart Logistics',
+                trackingNumber: 'GM444333222',
+                subtotal: '$89.99',
+                shippingCost: '$0.00',
+                taxAmount: '$7.20',
+                discount: '$0.00',
+                totalAmount: '$97.19',
+                currentLocation: 'Order cancelled',
+                driverName: 'N/A',
+                estimatedArrival: 'N/A',
+                timeline: [
+                    { status: 'Order Placed', description: 'Your order has been confirmed', date: 'Oct 12, 4:45 PM', completed: true },
+                    { status: 'Processing', description: 'Your order is being prepared', date: 'Oct 13, 9:00 AM', completed: true },
+                    { status: 'Cancelled', description: 'Order cancelled by customer', date: 'Oct 13, 2:30 PM', completed: true }
+                ],
+                items: [
+                    { name: 'Wireless Earbuds', description: 'True wireless, 24hr battery', price: '$89.99', quantity: 1, total: '$89.99' }
+                ]
+            }
+        };
+
+        // ===== FORM SUBMISSION =====
+        trackingForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const orderId = document.getElementById('orderId').value.trim().toUpperCase();
+            const email = document.getElementById('email').value.trim();
+
+            // Validation
+            if (!orderId || !email) {
+                showAlert('Please enter both Order ID and Email address', 'error');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showAlert('Please enter a valid email address', 'error');
+                return;
+            }
+
+            // Show loading state
+            const originalBtnText = trackBtn.innerHTML;
+            trackBtn.innerHTML = '<span class="spinner"></span> Tracking...';
+            trackBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                if (demoOrders[orderId]) {
+                    // Show success
+                    showAlert(`Order ${orderId} found! Loading tracking information...`, 'success');
+
+                    // Display order details
+                    displayOrderDetails(orderId, demoOrders[orderId]);
+
+                    // Hide empty state, show results
+                    emptyState.classList.add('hidden');
+                    orderSummary.classList.remove('hidden');
+                    trackingTimeline.classList.remove('hidden');
+                    orderItems.classList.remove('hidden');
+
+                    // Show delivery map only for shipped and processing orders
+                    if (demoOrders[orderId].status === 'Shipped' || demoOrders[orderId].status === 'Processing') {
+                        deliveryMap.classList.remove('hidden');
+                    } else {
+                        deliveryMap.classList.add('hidden');
+                    }
+
+                    // Scroll to results
+                    orderSummary.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    // Show error
+                    showAlert(`Order ID ${orderId} not found. Please check and try again.`, 'error');
+                }
+
+                // Restore button
+                trackBtn.innerHTML = originalBtnText;
+                trackBtn.disabled = false;
+            }, 1500);
+        });
+
+        // ===== DISPLAY ORDER DETAILS =====
+        function displayOrderDetails(orderId, orderData) {
+            // Update order summary
+            document.getElementById('displayOrderId').textContent = orderId;
+            document.getElementById('orderDate').textContent = `Placed on ${orderData.date}`;
+            document.getElementById('orderStatus').textContent = orderData.status;
+            document.getElementById('orderStatus').className = `order-status ${orderData.statusClass}`;
+            document.getElementById('estimatedDelivery').textContent = orderData.estimatedDelivery;
+            document.getElementById('shippingMethod').textContent = orderData.shippingMethod;
+            document.getElementById('carrier').textContent = orderData.carrier;
+            document.getElementById('trackingNumber').textContent = orderData.trackingNumber;
+
+            // Update progress bar
+            document.getElementById('deliveryProgress').style.width = `${orderData.progress}%`;
+
+            // Update order totals
+            document.getElementById('subtotal').textContent = orderData.subtotal;
+            document.getElementById('shippingCost').textContent = orderData.shippingCost;
+            document.getElementById('taxAmount').textContent = orderData.taxAmount;
+            document.getElementById('discount').textContent = orderData.discount;
+            document.getElementById('totalAmount').textContent = orderData.totalAmount;
+
+            // Update delivery info
+            document.getElementById('currentLocation').textContent = orderData.currentLocation;
+            document.getElementById('driverName').textContent = orderData.driverName;
+            document.getElementById('estimatedArrival').textContent = orderData.estimatedArrival;
+
+            // Update timeline
+            const timelineContainer = document.getElementById('timeline');
+            timelineContainer.innerHTML = '';
+
+            orderData.timeline.forEach((item, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = `timeline-item ${item.completed ? 'completed' : 'active'}`;
+
+                timelineItem.innerHTML = `
+                    <div class="timeline-content">
+                        <div class="timeline-info">
+                            <h4>${item.status}</h4>
+                            <p>${item.description}</p>
+                        </div>
+                        <div class="timeline-date">${item.date}</div>
+                    </div>
+                `;
+
+                timelineContainer.appendChild(timelineItem);
+            });
+
+            // Update order items
+            const itemsContainer = document.getElementById('orderItemsBody');
+            itemsContainer.innerHTML = '';
+
+            orderData.items.forEach(item => {
+                const itemRow = document.createElement('tr');
+
+                itemRow.innerHTML = `
+                    <td>
+                        <div class="item-info">
+                            <div class="item-image">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="item-details">
+                                <h4>${item.name}</h4>
+                                <p>${item.description}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${item.price}</td>
+                    <td class="text-center">${item.quantity}</td>
+                    <td class="text-right">${item.total}</td>
+                `;
+
+                itemsContainer.appendChild(itemRow);
+            });
+        }
+
+        // ===== ACTION BUTTONS =====
+        document.getElementById('viewInvoiceBtn')?.addEventListener('click', function (e) {
+            e.preventDefault();
+            showAlert('Invoice would be downloaded. In a real application, this would generate and download a PDF invoice.', 'info');
+        });
+
+        document.getElementById('contactSupportBtn')?.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = 'help-center.html';
+        });
+
+        document.getElementById('orderAgainBtn')?.addEventListener('click', function (e) {
+            e.preventDefault();
+            showAlert('Taking you back to shopping. In a real application, this would add all items from this order to your cart.', 'info');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        });
+
+        // ===== ALERT FUNCTION =====
+        function showAlert(message, type = 'info') {
+            // Remove existing alerts
+            const existingAlerts = document.querySelectorAll('.alert');
+            existingAlerts.forEach(alert => alert.remove());
+
+            // Determine icon based on type
+            let icon = 'info-circle';
+            if (type === 'success') icon = 'check-circle';
+            if (type === 'error') icon = 'exclamation-circle';
+
+            // Create alert element
+            const alertEl = document.createElement('div');
+            alertEl.className = `alert ${type}`;
+            alertEl.innerHTML = `
+                <div class="alert-icon">
+                    <i class="fas fa-${icon}"></i>
+                </div>
+                <div class="alert-content">
+                    <h4>${type.charAt(0).toUpperCase() + type.slice(1)}</h4>
+                    <p>${message}</p>
+                </div>
+                <button class="alert-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            // Add to container
+            alertContainer.appendChild(alertEl);
+
+            // Show alert with animation
+            setTimeout(() => {
+                alertEl.classList.add('show');
+            }, 10);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                alertEl.classList.remove('show');
+                setTimeout(() => {
+                    if (alertEl.parentNode) {
+                        alertEl.remove();
+                    }
+                }, 400);
+            }, 5000);
+
+            // Close button functionality
+            const closeBtn = alertEl.querySelector('.alert-close');
+            closeBtn.addEventListener('click', () => {
+                alertEl.classList.remove('show');
+                setTimeout(() => {
+                    if (alertEl.parentNode) {
+                        alertEl.remove();
+                    }
+                }, 400);
+            });
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check for order ID in URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderIdParam = urlParams.get('orderId');
+            const emailParam = urlParams.get('email');
+
+            if (orderIdParam && emailParam) {
+                // Auto-fill form
+                document.getElementById('orderId').value = orderIdParam;
+                document.getElementById('email').value = emailParam;
+
+                // Auto-trigger tracking
+                setTimeout(() => {
+                    trackingForm.dispatchEvent(new Event('submit'));
+                }, 1000);
+            }
+
+            // Add click handlers for demo order IDs
+            document.querySelectorAll('.demo-orders div').forEach(demoDiv => {
+                demoDiv.addEventListener('click', function () {
+                    const orderId = this.querySelector('strong').textContent;
+                    document.getElementById('orderId').value = orderId;
+                    document.getElementById('email').value = 'demo@example.com';
+                    showAlert(`Demo order ${orderId} loaded. Click "Track Order" to see tracking information.`, 'info');
+                });
+            });
+
+            // Add animation to map marker
+            const mapMarker = document.querySelector('.map-marker');
+            if (mapMarker) {
+                setInterval(() => {
+                    mapMarker.style.left = `${Math.random() * 80 + 10}%`;
+                    mapMarker.style.top = `${Math.random() * 80 + 10}%`;
+                }, 3000);
+            }
+        });
+
+        // ===== FORM VALIDATION ENHANCEMENTS =====
+        const orderIdInput = document.getElementById('orderId');
+        const emailInput = document.getElementById('email');
+
+        orderIdInput.addEventListener('input', function () {
+            this.value = this.value.toUpperCase();
+        });
+
+        // Auto-focus on order ID field
+        orderIdInput.focus();
+    </script>
+</body>
+
+</html>

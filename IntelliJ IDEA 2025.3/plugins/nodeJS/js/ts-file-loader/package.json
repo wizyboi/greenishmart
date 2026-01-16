@@ -1,0 +1,8 @@
+{
+  "name": "ts-file-loader",
+  "private": true,
+  "dependencies": {
+    "tsx": "^4.15.6",
+    "esbuild": "npm:esbuild-wasm@0.21.5"
+  }
+}
