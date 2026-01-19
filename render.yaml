@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: greenishmart-backend
+    env: docker
+    repo: https://github.com/wizyboi/greenishmart
+    dockerfilePath: django_backend/Dockerfile
+    buildCommand: |
+      pip install -r django_backend/requirements.txt
+      cd django_backend && python manage.py migrate
+    startCommand: "cd django_backend && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT --workers 3"
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        value: django-insecure-your-secret-key-here
+      - key: ALLOWED_HOSTS
+        value: "*.render.com,localhost,127.0.0.1"
+      - key: DATABASE_URL
+        value: # Leave empty; SQLite by default
+      - key: EMAIL_HOST_USER
+        sync: false
+      - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: DEFAULT_FROM_EMAIL
+        value: "noreply@greenishmart.com"

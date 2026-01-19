@@ -5,9 +5,12 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.utils import timezone
 import datetime
+import logging
 
 from .models import UserProfile, VerificationCode, Product, Newsletter, Review, ExchangeRate
 from decimal import Decimal
+
+logger = logging.getLogger('api')
 
 
 class UserRegistrationSerializer(serializers.Serializer):
@@ -89,21 +92,32 @@ class UserRegistrationSerializer(serializers.Serializer):
         from django.template.loader import render_to_string
         from django.core.mail import EmailMultiAlternatives
         
+        # Validate SMTP configuration
+        if not settings.EMAIL_HOST_USER or not settings.EMAIL_HOST_PASSWORD:
+            logger.error(f"❌ EMAIL SMTP Credentials Not Configured: EMAIL_HOST_USER={settings.EMAIL_HOST_USER}, EMAIL_HOST_PASSWORD={bool(settings.EMAIL_HOST_PASSWORD)}")
+            raise ValueError("Email SMTP credentials not configured in environment variables")
+        
         subject = f'Verify Your Email - GreenishMart - {timezone.now().strftime("%H:%M:%S")}'
         
         # Plain text version (fallback)
         text_message = f"""
-        Welcome to GreenishMart!
+Welcome to GreenishMart!
+
+Your verification code is: {code}
+
+This code will expire in 10 minutes.
+
+If you didn't create an account with GreenishMart, please ignore this email.
+
+Best regards,
+The GreenishMart Team
+"""
         
-        Your verification code is: {code}
-        
-        This code will expire in 10 minutes.
-        
-        If you didn't create an account with GreenishMart, please ignore this email.
-        
-        Best regards,
-        The GreenishMart Team
-        """
+        logger.info(f"📧 Preparing to send verification email to {email} from {settings.DEFAULT_FROM_EMAIL}")
+        logger.debug(f"EMAIL_BACKEND={settings.EMAIL_BACKEND}")
+        logger.debug(f"EMAIL_HOST={settings.EMAIL_HOST}")
+        logger.debug(f"EMAIL_PORT={settings.EMAIL_PORT}")
+        logger.debug(f"EMAIL_USE_TLS={settings.EMAIL_USE_TLS}")
         
         # HTML version (with template)
         try:
@@ -123,29 +137,27 @@ class UserRegistrationSerializer(serializers.Serializer):
                 to=[email]
             )
             email_msg.attach_alternative(html_message, "text/html")
-            email_msg.send(fail_silently=False)
+            result = email_msg.send(fail_silently=False)
             
-            print(f"✉️ HTML Email sent successfully to {email} using {template_name}")  
-            print(f"📧 Verification code: {code}")
+            logger.info(f"✉️ HTML Email sent successfully to {email} using {template_name} (result={result})")
+            logger.debug(f"📧 Verification code: {code}")
             return True
         except Exception as e:
-            print(f"⚠️ Template loading or HTML email failed: {e}")
+            logger.warning(f"⚠️ Template loading or HTML email failed: {e}", exc_info=True)
             # Fallback to plain text if HTML fails
             try:
-                send_mail(
+                result = send_mail(
                     subject,
                     text_message,
                     settings.DEFAULT_FROM_EMAIL,
                     [email],
                     fail_silently=False
                 )
-                print(f"✉️ Plain-text Fallback Email sent successfully to {email}")
+                logger.info(f"✉️ Plain-text Fallback Email sent successfully to {email} (result={result})")
                 return True
             except Exception as e2:
-                print(f"🔥 TOTAL EMAIL FAILURE to {email}: {e2}")
-                import traceback
-                traceback.print_exc()
-                return False
+                logger.error(f"🔥 TOTAL EMAIL FAILURE to {email}: {e2}", exc_info=True)
+                raise
 
 
 class LoginSerializer(serializers.Serializer):

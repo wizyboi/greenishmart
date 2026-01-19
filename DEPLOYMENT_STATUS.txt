@@ -1,0 +1,79 @@
+🚀 **GREENISHMART DEPLOYMENT STATUS**
+
+═══════════════════════════════════════════════════════════════
+
+✅ **Backend Production Ready**
+   - Code: https://github.com/wizyboi/greenishmart (master branch)
+   - Docker: Configured with Dockerfile + Procfile
+   - Dependencies: gunicorn, whitenoise, psycopg2, all production packages installed
+   - Database migrations: Ready
+   - Static files: Collected and whitenoise-optimized
+   - Health check: ✅ 200 OK (tested locally)
+
+───────────────────────────────────────────────────────────────
+
+📋 **DEPLOYMENT OPTIONS**
+
+**Option 1: One-Click Deploy (Easiest)**
+👉 https://render.com/deploy?repo=https://github.com/wizyboi/greenishmart
+
+**Option 2: Manual Deploy via Dashboard**
+1. Go to: https://dashboard.render.com
+2. Click: "New +" → "Web Service"
+3. Connect GitHub → select greenishmart
+4. Fill out the form with values below ↓
+
+───────────────────────────────────────────────────────────────
+
+⚙️  **Required Configuration (for Render Dashboard)**
+
+Name: greenishmart-backend
+Environment: Docker
+Region: Oregon
+Plan: Free
+
+Build Command:
+  cd django_backend && pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput
+
+Start Command:
+  cd django_backend && gunicorn backend.wsgi:application --bind 0.0.0.0:$PORT --workers 3
+
+Environment Variables:
+  DEBUG = False
+  SECRET_KEY = django-insecure-your-secret-key-here
+  ALLOWED_HOSTS = *.render.com,localhost,127.0.0.1
+  EMAIL_HOST_USER = wizyomeka@gmail.com
+  EMAIL_HOST_PASSWORD = kkivwywogpobzdje
+  DEFAULT_FROM_EMAIL = GreenishMart <wizyomeka@gmail.com>
+
+───────────────────────────────────────────────────────────────
+
+🔗 **After Deployment**
+
+Backend URL (auto-generated): https://greenishmart-backend.onrender.com
+Health Check: https://greenishmart-backend.onrender.com/api/health/
+
+Then update frontend (script.js):
+  const API_BASE = 'https://greenishmart-backend.onrender.com/api';
+
+Redeploy frontend to Vercel.
+
+───────────────────────────────────────────────────────────────
+
+⏱️  Expected Timeline:
+  - Render build: 3-5 minutes
+  - First deploy: should be live within 5-10 minutes
+  - Cold start on first request: ~30 seconds (normal)
+
+───────────────────────────────────────────────────────────────
+
+📝 **Local Backend Tested & Verified:**
+   ✅ Django server running
+   ✅ /api/health/ endpoint: 200 OK
+   ✅ Message: "GreenishMart API is running"
+   ✅ Data: {"status": "healthy", "timestamp": "2026-01-16T14:48:15..."}
+
+═══════════════════════════════════════════════════════════════
+
+Next Step: Click the One-Click Deploy link or go to Render dashboard.
+If you hit issues during the build, I can help troubleshoot the logs.
