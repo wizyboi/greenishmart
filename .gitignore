@@ -1,2 +1,6 @@
 .vercel
 .env*.local
+
+# Large test artifacts
+django_backend/test_integration.py
+django_backend/test_integration_clean.py
